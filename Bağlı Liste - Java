@@ -1,0 +1,56 @@
+public class Node {
+	int data;
+	Node next;
+}
+public Node siraliekle(int data) {
+		Node node=new Node();
+		node.data=data;
+		node.next=null;
+		
+		if(head==null) {
+			head=node;	
+			return head;
+		}
+		if(head.data>data) {
+			node.next=head;
+			head=node;
+			return head;
+		}
+			Node n=head;
+			while(n.next!=null && n.next.data<data) {
+				n=n.next;
+			}//Node temp eleman yani geçici eleman'ın next'ine iter yani n.next'in değeri veriliyor.
+			//n.next'in yeni değeri de node oluyor ve node yani geçiçi eleman araya ekleniyor.
+			node.next=n.next;
+			n.next=node;
+			return n;
+	}
+  public void show() {
+		//root değerini gösteriyor ilk başta 
+		//ilk iterator Node node oluyor.
+		Node node=head;
+		//Liste elemanlarına erişmek için liste elemanları üzerinde hareket ediyoruz.
+		while(node.next!=null){
+			//linked list üzerinde dolaşan aynı tipte bir iterator yapısı
+			System.out.println(node.data);
+			//iter next yapılıyor, next kutuyu gösteriyor.
+			node=node.next;
+		}
+		System.out.println(node.data);
+	}
+  
+  
+  public static void main(String [] args) {
+		List<Integer> sayilar=new ArrayList<Integer>();
+		for (int i=0;i<10;i++) {
+			sayilar.add(i*i);
+		}
+		System.out.println(sayilar);
+		
+		LinkedList list2=new LinkedList();
+		for(int i=0;i<sayilar.size();i++)
+		{
+			list2.siraliekle(sayilar.get(i));
+		}
+		list2.show();
+	}
